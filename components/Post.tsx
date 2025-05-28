@@ -16,12 +16,15 @@ import React from "react"
 
 
 
-function Post({ post }: { post: GetPostsQueryResult[number] }) {
+function Post({ post }: { post: GetPostsQueryResult }) {
   const membershipTier = useMembershipTier();
   const { user } = useUser();
 
-  const postMembershipLevel = tierMap[post.tierAccess as TierAccess];
-  const isLocked = membershipTier && membershipTier < postMembershipLevel;
+if (!post) {
+  return null;
+}
+const postMembershipLevel = tierMap[post.tierAccess as TierAccess];
+const isLocked = membershipTier && membershipTier < postMembershipLevel;
 
   if (!membershipTier)
     return (
@@ -95,4 +98,4 @@ function Post({ post }: { post: GetPostsQueryResult[number] }) {
     )
 }
 
-export default Post;
+export default Post

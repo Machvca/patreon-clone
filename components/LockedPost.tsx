@@ -9,7 +9,8 @@ import { GetPostsQueryResult } from "@/sanity.types";
 
 
 
-function LockedPost({ post }: { post: GetPostsQueryResult[number] }) {
+function LockedPost({ post }: { post: GetPostsQueryResult }) {
+  if (!post) return null;
   return (
     <Link href="/pricing">
       <article
